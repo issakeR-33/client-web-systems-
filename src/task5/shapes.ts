@@ -58,13 +58,13 @@ class Triangle implements Shape {
         this.sideC = sideC;
     }
 
-    getPerimeter(): number {
-        return this.sideA + this.sideB + this.sideC;
-    }
-
     getArea(): number {
         const s = this.getPerimeter() / 2;
         return Math.sqrt(s * (s - this.sideA) * (s - this.sideB) * (s - this.sideC));
+    }
+
+    getPerimeter(): number {
+        return this.sideA + this.sideB + this.sideC;
     }
 
     scale(factor: number): void {
@@ -74,26 +74,27 @@ class Triangle implements Shape {
     }
 }
 
+function printTotals(shapes: Shape[]): void {
+    let totalArea: number = 0;
+    let totalPerimeter: number = 0;
+
+    for (const shape of shapes) {
+        totalArea += shape.getArea();
+        totalPerimeter += shape.getPerimeter();
+    }
+
+    console.log(`Загальна площа: ${totalArea.toFixed(2)}`);
+    console.log(`Загальний периметр: ${totalPerimeter.toFixed(2)}`);
+}
+
 const shapes: Shape[] = [
     new Circle(5),
     new Rectangle(4, 6),
     new Triangle(3, 4, 5),
 ];
 
-let totalArea = 0;
-let totalPerimeter = 0;
+printTotals(shapes);
 
-for (const shape of shapes) {
-    totalArea += shape.getArea();
-    totalPerimeter += shape.getPerimeter();
-}
-
-console.log(`загальна площа всіх фігур: ${totalArea.toFixed(2)}`);
-console.log(`загальний периметр всіх фігур: ${totalPerimeter.toFixed(2)}`);
-
-const firstShape = shapes[0];
-
-if (firstShape) {
-    firstShape.scale(2);
-    console.log(`площа кола після масштабування x2: ${firstShape.getArea().toFixed(2)}`);
-}
+console.log("Після збільшення всіх фігур у 2 рази:");
+shapes.forEach((shape) => shape.scale(2));
+printTotals(shapes);
