@@ -1,0 +1,17 @@
+{
+  "name": "client-web-systems-lab1",
+  "version": "1.0.0",
+  "description": "Лабораторна робота №1: строга типізація, екосистема TypeScript",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/prompt-sync": "^4.2.3",
+    "typescript": "^7.0.2"
+  }
+}
